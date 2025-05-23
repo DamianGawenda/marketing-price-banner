@@ -1,31 +1,38 @@
 {
-  "homepage": "http://b805rohit.github.io/marketing-price-banner",
-  "name": "marketing-price-banner",
-  "private": true,
-  "version": "0.0.0",
+  "name": "ghl-widget-collection",
+  "version": "2.0.0",
+  "description": "Professional widget collection for GoHighLevel funnels - includes countdown timers, social proof, CTA banners, exit intent, scroll analytics, and form recovery widgets",
+  "keywords": ["gohighlevel", "widgets", "marketing", "conversion", "funnels", "exit-intent", "analytics", "form-recovery"],
+  "author": "GHL Widget Collection",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc -b && vite build",
+    "build": "vue-tsc && vite build",
     "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d dist",
+    "test": "npm run build && echo 'Build successful - ready for marketplace submission'",
+    "package": "npm run build && cd dist && zip -r ../ghl-widget-collection.zip ."
   },
   "dependencies": {
-    "@vicons/ionicons5": "^0.12.0",
-    "lodash-es": "^4.17.21",
+    "naive-ui": "^2.38.1",
     "postmate": "^1.5.2",
-    "vue": "^3.4.37"
+    "vue": "^3.4.21"
   },
   "devDependencies": {
-    "@types/postmate": "^1.5.4",
-    "@vitejs/plugin-vue": "^5.1.2",
-    "autoprefixer": "^10.4.20",
-    "naive-ui": "^2.40.1",
-    "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.13",
-    "typescript": "^5.5.3",
-    "vite": "^5.4.1",
-    "vue-tsc": "^2.0.29"
+    "@types/node": "^20.11.24",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "gh-pages": "^6.1.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.4",
+    "vue-tsc": "^1.8.27"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/ghl-widget-collection.git"
+  },
+  "homepage": "https://your-username.github.io/ghl-widget-collection/",
+  "bugs": {
+    "url": "https://github.com/your-username/ghl-widget-collection/issues"
   }
 }

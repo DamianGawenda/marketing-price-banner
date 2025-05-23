@@ -1,26 +1,26 @@
 <script setup lang="ts">
 import { NConfigProvider } from "naive-ui";
 import { onMounted } from "vue";
-import Setting from "./components/Setting.vue";
+import WidgetSelector from "./components/WidgetSelector.vue";
 import { usePostmate } from "./composition/usePostmate";
-import useStore from "./store";
 import { theme } from "./utils/theme";
 
 const { handshake, emitCode } = usePostmate();
-const store = useStore();
+
+const handleCodeChange = (codeData: any) => {
+  // Emit the code to the parent (GHL)
+  handshake?.then(async (parent: any) => {
+    parent?.emit("code", codeData);
+  });
+};
 
 onMounted(() => {
   handshake?.then(async (parent: any) => {
     console.log("model", parent.model?.elementStore);
-    if (parent.model.elementStore) {
-      if (parent?.model?.elementStore?.defaultStyles) {
-        store.defaultStyles.value = parent?.model?.elementStore?.defaultStyles;
-      }
-      if (parent?.model?.elementStore?.plans) {
-        store.plans.value = parent?.model?.elementStore?.plans;
-      }
-    } else {
-      emitCode();
+    // Handle initial state if needed
+    if (!parent.model?.elementStore) {
+      // No existing data, start fresh
+      console.log("Starting with fresh widget selector");
     }
   });
 });
@@ -28,7 +28,7 @@ onMounted(() => {
 
 <template>
   <NConfigProvider :theme="theme" class="h-screen">
-    <Setting />
+    <WidgetSelector @codeChange="handleCodeChange" />
   </NConfigProvider>
 </template>
 
